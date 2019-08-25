@@ -164,4 +164,7 @@ Here's a [link to my video result](./finding_lane_lines.mp4)
 
 #### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
-Here I'll talk about the approach I took, what techniques I used, what worked and why, where the pipeline might fail and how I might improve it if I were going to pursue this project further.  
+
+The pipeline will likely fail in situations where the curvature gets to high and the lines bend to the left or right edge of the image. In this case my cropping approach described above with cut off the lines. Also the Sobel-x operation in x direction might poorly perform on bended lines where the end has high gradients in y direction. To improve the pipeline one could also take a Sobel-y operation into account and work with directed gradients.  
+
+To overcome the problem with wobbly lines in the video one could test the result with respect to consistency of the left and write lane results. For example a check if both lines are parallel could be implemented. In case this check failes one could trigger a new line pixel detection using the "sliding window" technique. 
